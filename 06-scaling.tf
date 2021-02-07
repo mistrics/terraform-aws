@@ -31,16 +31,17 @@ resource "aws_launch_configuration" "launch-config" {
   associate_public_ip_address = true
   user_data = templatefile("${path.module}/instance-config.sh", {
     DB_HOST = aws_db_instance.database.address
-    DB_USERNAME = var.db-username
+    DB_USER = var.db-username
     DB_PASSWORD = var.db-password
     DB_NAME = var.db-name
+    efs_dns_name = aws_efs_file_system.efs.dns_name
   })
 }
 
 resource "aws_autoscaling_group" "auto-scaling-group" {
   //availability_zones = split(",", var.azs)
-  desired_capacity   = 1
-  max_size           = 2
+  desired_capacity   = 2
+  max_size           = 3
   min_size           = 1
   launch_configuration = aws_launch_configuration.launch-config.id
   vpc_zone_identifier = [aws_subnet.public_subnet.id]

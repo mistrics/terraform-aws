@@ -1,4 +1,19 @@
 
+variable "db-name" {
+  type = string
+  description = "RDS first database name"
+}
+
+variable "db-username" {
+  type = string
+  description = "RDS database username"
+}
+
+variable "db-password" {
+  type = string
+  description = "RDS database password"
+}
+
 
 resource "aws_db_subnet_group" "db-subnet-group" {
   name       = lower("${var.customer-code}-DB-Subnet-Group")
@@ -24,7 +39,6 @@ resource "aws_db_instance" "database" {
   db_subnet_group_name = aws_db_subnet_group.db-subnet-group.name
   publicly_accessible = true
   final_snapshot_identifier = "${var.customer-code}-DB-Snapshot"
-  character_set_name = "utf8"
   # skip_final_snapshot = true
   tags = {
     "Name" = "${var.customer-code}-DB"

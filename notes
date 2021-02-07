@@ -1,5 +1,0 @@
-docker-compose.exe -f .\local.yml run terraform -chdir=/workspace <command>
-
-terraform plan -out tyho
-terraform apply -state-out prod.tfstate tyho
-terraform destroy -state prod.tfstate

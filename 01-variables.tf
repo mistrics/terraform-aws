@@ -4,6 +4,11 @@ variable "customer-code" {
   description = "customer code to be used across resources."
 }
 
+variable "environment" {
+  type = string
+  description = "Name of the target environment, ex. Dev, Prod etc."
+}
+
 variable "access-key" {
   type = string
 }
@@ -15,23 +20,6 @@ variable "secret-key" {
 variable "region" {
   type = string
 }
-
-variable "db-username" {
-  type = string
-  description = "RDS database username"
-}
-
-variable "db-password" {
-  type = string
-  description = "RDS database password"
-}
-
-variable "db-name" {
-  type = string
-  description = "RDS first database name"
-}
-
-
 
 variable "azs" {
   type = string
